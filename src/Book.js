@@ -17,13 +17,14 @@ class Book extends Component {
     const {book, useAPI, onEditBookStatus} = this.props
     //position in the correct variable, if no need for API we use data from the props, else get from state
     const b = useAPI ? this.state.book : book
+    const bgImage = (b.imageLinks && b.imageLinks.smallThumbnail) ? b.imageLinks.smallThumbnail : '../public/book_placeholder.gif' 
 
     return (
       <div className="book">
         {b.title && b.authors && b.shelf && (
           <div>
             <div className="book-top">
-              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${b.imageLinks.smallThumbnail})` }}></div>
+              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${bgImage})` }}></div>
               <div className="book-shelf-changer">
                 <select
                   value={b.shelf}
